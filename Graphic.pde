@@ -35,10 +35,14 @@ void playGame(){
         ballDirection = -1 * ballDirection;
       }
       if (ballX + 10 > width){
-        ballDirection = Math.abs(90 - ballDirection);
+        System.out.println("stop1");
+        ballDirection = 90 - ballDirection;
       }
       else if (ballX < 0){
-        ballDirection = 90 + ballDirection;
+        System.out.println("stop2");
+        System.out.println(ballDirection);
+        ballDirection = 90 - ballDirection;
+        System.out.println(ballDirection);
       }
     }
     else{
@@ -51,10 +55,11 @@ void playGame(){
         gameStarted = false;
       }
       if (ballX + 10 > width){
-        ballDirection = Math.abs(90 - ballDirection);
+        System.out.println("stop3");
+        ballDirection = 90 - ballDirection;
       }
       else if (ballX < 0){
-        gameStarted = false;
+        System.out.println("stop4");
         ballDirection = 90 + ballDirection;
       }
     }
@@ -62,6 +67,18 @@ void playGame(){
 }
 
 boolean hitBlock(){
+  for (int i=0; i < blocks.length; i++){
+    for (int j=0; j < blocks[0].length; j++){
+      if (ballX > i * 40 && ballX < (i + 1) * 40){
+        if (ballY > j * 20 && ballY < (j + 1) * 20){
+          if (blocks[i][j] == true){
+            blocks[i][j] = false;
+            return true;
+          }
+        }
+      }
+    }
+  }
   return false;
 }
 
